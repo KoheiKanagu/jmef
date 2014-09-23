@@ -1,6 +1,0 @@
-# Created by .gitignore support plugin (hsz.mobi)
-LICENSE.md
-*.DS_Store
-target/
-*.iml
-.idea/*
