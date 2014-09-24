@@ -30,7 +30,7 @@ public class Tutorial3 {
         // Assuming in run configurations working directory is set to $MODULE_DIR$
         String input_folder  = "src/main/resources/images/";
         String output_folder = "src/main/resources/images/";
-        String image_name    = "mulloy";
+        String image_name    = "Mandrill";
         String suffix = ".png";
         String image_path    = input_folder + image_name + suffix;
         System.out.println(image_path);
