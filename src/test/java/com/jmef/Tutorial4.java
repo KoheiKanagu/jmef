@@ -27,9 +27,9 @@ public class Tutorial4 {
 		int m = 8;
 		
 		// Image/texture information (to be changed to fit your configuration)
-		String input_folder  = "/Users/vincent/Documents/jmef/input/";
-		String output_folder = "/Users/vincent/Documents/jmef/output/";
-		String image_name    = "Baboon";
+        String input_folder  = "src/main/resources/images/";
+        String output_folder = "src/main/resources/images/";
+        String image_name    = "Mandrill";
 		String image_path    = input_folder + image_name + ".png";
 		String mixture_path  = String.format("%s%s_3D_%03d.mix", input_folder, image_name, n); 
 		
