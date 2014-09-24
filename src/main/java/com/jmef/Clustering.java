@@ -32,13 +32,13 @@ public class Clustering{
 	 * @return     center of mass of f
 	 */
 	public static Parameter getCenterOfMass(MixtureModel f){
-		Parameter centroid = f.param[0].Times(f.weight[0]);
+		Parameter centroid = f.param[0].times(f.weight[0]);
 		double    sum      = f.weight[0];
 		for(int i=1; i<f.size; i++){
-			centroid  = centroid.Plus(f.param[i].Times(f.weight[i]));
+			centroid  = centroid.plus(f.param[i].times(f.weight[i]));
 			sum      += f.weight[i];
 		}
-		return centroid.Times(1./sum);
+		return centroid.times(1. / sum);
 	}
 
 	
@@ -50,13 +50,13 @@ public class Clustering{
 	 * @return      generalized centroid of f
 	 */
 	public static Parameter getGeneralizedCentroid(ExponentialFamily EF, MixtureModel f){
-		Parameter centroid = EF.gradF(f.param[0]).Times(f.weight[0]);
+		Parameter centroid = EF.gradF(f.param[0]).times(f.weight[0]);
 		double    sum      = f.weight[0];
 		for(int i=1; i<f.size; i++){
-			centroid  = centroid.Plus( EF.gradF(f.param[i]).Times(f.weight[i]) );
+			centroid  = centroid.plus(EF.gradF(f.param[i]).times(f.weight[i]));
 			sum      += f.weight[i];	
 		}
-		return EF.gradG(centroid.Times(1./sum));
+		return EF.gradG(centroid.times(1. / sum));
 	}
 
 	

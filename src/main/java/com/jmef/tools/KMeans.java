@@ -93,7 +93,7 @@ public class KMeans {
 			double dist  = Double.MAX_VALUE;
 			
 			for (int j=0; j<k; j++){
-				double dist_tmp = points[i].Minus(centroids[j]).norm2();
+				double dist_tmp = points[i].minus(centroids[j]).norm2();
 				if (dist_tmp<dist){
 					dist  = dist_tmp;
 					index = j;
@@ -117,8 +117,8 @@ public class KMeans {
 		for (int i=0; i<k; i++){
 			centroids[i] = new PVector(points[0].dim);
 			for (int j=0; j<clusters[i].size(); j++)
-				centroids[i] = centroids[i].Plus((PVector)clusters[i].get(j));
-			centroids[i] = centroids[i].Times(1.0d/clusters[i].size());
+				centroids[i] = centroids[i].plus((PVector) clusters[i].get(j));
+			centroids[i] = centroids[i].times(1.0d / clusters[i].size());
 		}
 	}
 }

@@ -28,8 +28,8 @@ public class Tutorial3 {
 		
 		// Image/texture information (to be changed to fit your configuration)
         // Assuming in run configurations working directory is set to $MODULE_DIR$
-        String input_folder  = "src/main/resources/images/";
-        String output_folder = "src/main/resources/images/";
+        String input_folder  = "src/test/resources/images/";
+        String output_folder = "src/test/resources/images/";
         String image_name    = "Mandrill";
         String suffix = ".png";
         String image_path    = input_folder + image_name + suffix;

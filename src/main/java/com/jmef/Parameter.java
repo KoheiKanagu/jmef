@@ -53,7 +53,7 @@ abstract public class Parameter implements Serializable{
 	 * @param   q  parameter
 	 * @return     p+q
 	 */
-	abstract public Parameter Plus(Parameter q);
+	abstract public Parameter plus(Parameter q);
 	
 
 	/**
@@ -61,7 +61,7 @@ abstract public class Parameter implements Serializable{
 	 * @param   q  parameter
 	 * @return     p-q
 	 */
-	abstract public Parameter Minus(Parameter q);
+	abstract public Parameter minus(Parameter q);
 
 
 	/**
@@ -69,7 +69,7 @@ abstract public class Parameter implements Serializable{
 	 * @param  lambda  value \f$ \lambda \f$
 	 * @return         \f$ \lambda p \f$
 	 */
-	abstract public Parameter Times(double lambda);
+	abstract public Parameter times(double lambda);
 
 
 	/**
@@ -77,7 +77,7 @@ abstract public class Parameter implements Serializable{
 	 * @param   q  parameter
 	 * @return     \f$ \langle p , q \rangle \f$ 
 	 */
-	abstract public double InnerProduct(Parameter q);
+	abstract public double innerProduct(Parameter q);
 	
 	
 	/**

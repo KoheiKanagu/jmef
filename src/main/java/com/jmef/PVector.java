@@ -55,7 +55,7 @@ public final class PVector extends Parameter{
 	 * @param   v2  vector \f$ v_2 \f$
 	 * @return      \f$ v_1 + v_2 \f$
 	 */
-	public PVector Plus(Parameter v2){
+	public PVector plus(Parameter v2){
 		PVector result = new PVector(this.dim);
 		PVector q      = (PVector)v2;
 		for(int i=0; i<q.dim; i++)
@@ -69,7 +69,7 @@ public final class PVector extends Parameter{
 	 * @param   v2  vector \f$ v_2 \f$
 	 * @return      \f$ v_1 - v_2 \f$
 	 */
-	public PVector Minus(Parameter v2){
+	public PVector minus(Parameter v2){
 		PVector result = new PVector(this.dim);
 		PVector q      = (PVector)v2;
 		for(int i=0; i<q.dim; i++)
@@ -83,7 +83,7 @@ public final class PVector extends Parameter{
 	 * @param  lambda  value \f$ \lambda \f$
 	 * @return         \f$ \lambda . v\f$
 	 */
-	public PVector Times(double lambda){
+	public PVector times(double lambda){
 		PVector result = new PVector(this.dim);
 
 		for(int i=0; i<dim; i++)
@@ -98,7 +98,7 @@ public final class PVector extends Parameter{
 	 * @param   v2  vector \f$ v_2 \f$
 	 * @return      \f$ v_1^\top . v_2 \f$ 
 	 */
-	public double InnerProduct(Parameter v2){
+	public double innerProduct(Parameter v2){
 		double  result = 0.0d;
 		PVector q      = (PVector)v2;
 		for(int i=0; i<q.dim; i++)

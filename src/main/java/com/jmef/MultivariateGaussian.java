@@ -56,8 +56,8 @@ public final class MultivariateGaussian extends ExponentialFamily<PVector, PVect
 	 */
 	public PVectorMatrix gradF(PVectorMatrix T){
 		PVectorMatrix gradient = new PVectorMatrix(T.v.dim);
-		gradient.v    = T.M.Inverse().MultiplyVectorRight(T.v).Times(0.5d);
-		gradient.M    = T.M.Inverse().Times(-0.5d).Minus( (T.M.Inverse().MultiplyVectorRight(T.v)).OuterProduct().Times(0.25d) );
+		gradient.v    = T.M.Inverse().MultiplyVectorRight(T.v).times(0.5d);
+		gradient.M    = T.M.Inverse().times(-0.5d).minus((T.M.Inverse().MultiplyVectorRight(T.v)).OuterProduct().times(0.25d));
 		gradient.type = TYPE.EXPECTATION_PARAMETER;
 		return gradient;
 	}
@@ -69,7 +69,7 @@ public final class MultivariateGaussian extends ExponentialFamily<PVector, PVect
 	 * @return     \f$ G(\mathbf{H}) = - \frac{1}{2} \log \left( 1 + \eta^T H^{-1} \eta \right) - \frac{1}{2} \log \det (-H) - \frac{d}{2} \log (2 \pi e) \f$
 	 */
 	public double G(PVectorMatrix H){
-		return	-0.5d * Math.log( 1.0d + H.v.InnerProduct(H.M.Inverse().MultiplyVectorRight(H.v)) ) - 0.5d * Math.log( H.M.Times(-1.0d).Determinant() ) - H.v.dim*0.5d*Math.log(2*Math.PI*Math.E);
+		return	-0.5d * Math.log( 1.0d + H.v.innerProduct(H.M.Inverse().MultiplyVectorRight(H.v)) ) - 0.5d * Math.log( H.M.times(-1.0d).Determinant() ) - H.v.dim*0.5d*Math.log(2*Math.PI*Math.E);
 	}
 
 
@@ -80,9 +80,9 @@ public final class MultivariateGaussian extends ExponentialFamily<PVector, PVect
 	 */
 	public PVectorMatrix gradG(PVectorMatrix H){
 		PVectorMatrix gradient = new PVectorMatrix(H.v.dim);
-		PMatrix tmp   = H.M.Plus(H.v.OuterProduct()).Inverse();
-		gradient.v    = tmp.MultiplyVectorRight(H.v).Times(-1.0d);
-		gradient.M    = tmp.Times(-0.5d);
+		PMatrix tmp   = H.M.plus(H.v.OuterProduct()).Inverse();
+		gradient.v    = tmp.MultiplyVectorRight(H.v).times(-1.0d);
+		gradient.M    = tmp.times(-0.5d);
 		gradient.type = TYPE.NATURAL_PARAMETER;
 		return gradient;	
 	}
@@ -96,7 +96,7 @@ public final class MultivariateGaussian extends ExponentialFamily<PVector, PVect
 	public PVectorMatrix t(PVector x){
 		PVectorMatrix t = new PVectorMatrix(x.dim);
 		t.v    = x;
-		t.M    = x.OuterProduct().Times(-1);
+		t.M    = x.OuterProduct().times(-1);
 		t.type = TYPE.EXPECTATION_PARAMETER;
 		return t;
 	}
@@ -121,7 +121,7 @@ public final class MultivariateGaussian extends ExponentialFamily<PVector, PVect
 		PVectorMatrix T   = new PVectorMatrix(L.v.dim);
 		PMatrix       tmp = L.M.Inverse();
 		T.v               = tmp.MultiplyVectorRight(L.v);	
-		T.M               = tmp.Times(0.5d);
+		T.M               = tmp.times(0.5d);
 		T.type            = TYPE.NATURAL_PARAMETER;
 		return T;
 	}
@@ -134,7 +134,7 @@ public final class MultivariateGaussian extends ExponentialFamily<PVector, PVect
 	 */
 	public PVectorMatrix Theta2Lambda(PVectorMatrix T){
 		PVectorMatrix L = new PVectorMatrix(T.v.dim);
-		L.M             = T.M.Inverse().Times(0.5d);
+		L.M             = T.M.Inverse().times(0.5d);
 		L.v             = L.M.MultiplyVectorRight(T.v);
 		L.type          = TYPE.SOURCE_PARAMETER;
 		return L;
@@ -149,7 +149,7 @@ public final class MultivariateGaussian extends ExponentialFamily<PVector, PVect
 	public PVectorMatrix Lambda2Eta(PVectorMatrix L){
 		PVectorMatrix H = new PVectorMatrix(L.v.dim);
 		H.v             = (PVector)L.v.clone();
-		H.M             = L.M.Plus(L.v.OuterProduct()).Times(-1);
+		H.M             = L.M.plus(L.v.OuterProduct()).times(-1);
 		H.type          = TYPE.EXPECTATION_PARAMETER;
 		return H;
 	}
@@ -163,7 +163,7 @@ public final class MultivariateGaussian extends ExponentialFamily<PVector, PVect
 	public PVectorMatrix Eta2Lambda(PVectorMatrix H){
 		PVectorMatrix L = new PVectorMatrix(H.v.dim);
 		L.v             = (PVector)H.v.clone();
-		L.M             = H.M.Plus(H.v.OuterProduct()).Times(-1);
+		L.M             = H.M.plus(H.v.OuterProduct()).times(-1);
 		L.type          = TYPE.SOURCE_PARAMETER;
 		return L;
 	}
@@ -177,7 +177,7 @@ public final class MultivariateGaussian extends ExponentialFamily<PVector, PVect
 	 */
 	public double density(PVector x, PVectorMatrix param){
 		if (param.type==TYPE.SOURCE_PARAMETER){
-			double v1 = (x.Minus(param.v)).InnerProduct(param.M.Inverse().MultiplyVectorRight(x.Minus(param.v)));
+			double v1 = (x.minus(param.v)).innerProduct(param.M.Inverse().MultiplyVectorRight(x.minus(param.v)));
 			double v2 = Math.exp(-0.5d*v1);
 			double v3 = Math.pow(2.0d*Math.PI, (double)x.dim/2.0d)*Math.sqrt(param.M.Determinant());
 			return v2 / v3;
@@ -203,7 +203,7 @@ public final class MultivariateGaussian extends ExponentialFamily<PVector, PVect
 			z.array[i] = rand.nextGaussian();
 		
 		// Generates point
-		return L.M.Cholesky().MultiplyVectorRight(z).Plus(L.v);
+		return L.M.Cholesky().MultiplyVectorRight(z).plus(L.v);
 	}
 
 
@@ -220,10 +220,10 @@ public final class MultivariateGaussian extends ExponentialFamily<PVector, PVect
 		PMatrix vP  = LP.M;
 		PVector mQ  = LQ.v;
 		PMatrix vQ  = LQ.M;
-		PVector tmp = mQ.Minus(mP);
+		PVector tmp = mQ.minus(mP);
 		return 0.5d * ( Math.log(vQ.Determinant()/vP.Determinant()) 
 				+ vQ.Inverse().Multiply(vP).Trace() 
-				+ tmp.InnerProduct(vQ.Inverse().MultiplyVectorRight(tmp))
+				+ tmp.innerProduct(vQ.Inverse().MultiplyVectorRight(tmp))
 				- LP.dim);
 	}
 

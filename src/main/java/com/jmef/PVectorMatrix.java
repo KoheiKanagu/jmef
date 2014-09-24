@@ -58,11 +58,11 @@ public final class PVectorMatrix extends Parameter{
 	 * @param   v2m2  vector-matrix \f$ (v_2, m_2) \f$
 	 * @return        \f$ ( v_1 + v_2, m_1 + m_2 ) \f$
 	 */
-	public PVectorMatrix Plus(Parameter v2m2){
+	public PVectorMatrix plus(Parameter v2m2){
 		PVectorMatrix Q      = (PVectorMatrix)v2m2;
 		PVectorMatrix result = new PVectorMatrix(Q.v.dim);
-		result.v = this.v.Plus(Q.v);
-		result.M = this.M.Plus(Q.M);
+		result.v = this.v.plus(Q.v);
+		result.M = this.M.plus(Q.M);
 		return result;	
 	}
 
@@ -72,11 +72,11 @@ public final class PVectorMatrix extends Parameter{
 	 * @param   v2m2  vector-matrix \f$ (v_2, m_2) \f$
 	 * @return        \f$ ( v_1 - v_2, m_1 - m_2 ) \f$
 	 */
-	public PVectorMatrix Minus(Parameter v2m2){
+	public PVectorMatrix minus(Parameter v2m2){
 		PVectorMatrix Q      = (PVectorMatrix)v2m2;
 		PVectorMatrix result = new PVectorMatrix(Q.v.dim);
-		result.v = this.v.Minus(Q.v);
-		result.M = this.M.Minus(Q.M);
+		result.v = this.v.minus(Q.v);
+		result.M = this.M.minus(Q.M);
 		return result;	
 	}
 
@@ -86,10 +86,10 @@ public final class PVectorMatrix extends Parameter{
 	 * @param  lambda  value \f$ \lambda \f$
 	 * @return         \f$ ( \lambda v , \lambda m ) \f$
 	 */
-	public PVectorMatrix Times(double lambda){
+	public PVectorMatrix times(double lambda){
 		PVectorMatrix result = new PVectorMatrix(v.dim);
-		result.v = this.v.Times(lambda);
-		result.M = (this.M).Times(lambda);
+		result.v = this.v.times(lambda);
+		result.M = (this.M).times(lambda);
 		return result;	
 	}
 
@@ -99,9 +99,9 @@ public final class PVectorMatrix extends Parameter{
 	 * @param   v2m2  vector-matrix \f$ (v_2, m_2) \f$
 	 * @return        \f$ \langle v_1,v_2 \rangle + \langle m_1,m_2 \rangle \f$ 
 	 */
-	public double InnerProduct(Parameter v2m2){
+	public double innerProduct(Parameter v2m2){
 		PVectorMatrix Q = (PVectorMatrix)v2m2;	
-		return this.v.InnerProduct(Q.v) + this.M.InnerProduct(Q.M);
+		return this.v.innerProduct(Q.v) + this.M.innerProduct(Q.M);
 	}
 
 

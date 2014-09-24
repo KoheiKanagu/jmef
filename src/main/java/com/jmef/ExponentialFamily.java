@@ -50,7 +50,7 @@ abstract public class ExponentialFamily<ParamX extends Parameter, ParamD extends
 	 * @return      \f$ div F( \mathbf{\Theta}_P \| \mathbf{\Theta}_Q ) =  F(\mathbf{\Theta}_P) - F(\mathbf{\Theta}_Q) - \langle \mathbf{\Theta}_P-\mathbf{\Theta}_Q , \nabla F(\mathbf{\Theta}_Q) \rangle\f$
 	 */
 	public  double DivergenceF(ParamD TP , ParamD TQ){
-		return F(TP) - F(TQ) - (TP.Minus(TQ)).InnerProduct(gradF(TQ));
+		return F(TP) - F(TQ) - (TP.minus(TQ)).innerProduct(gradF(TQ));
 	}
 
 	
@@ -77,7 +77,7 @@ abstract public class ExponentialFamily<ParamX extends Parameter, ParamD extends
 	 * @return      \f$ div G( \mathbf{H}_P \| \mathbf{H}_Q ) =  G(\mathbf{H}_P) - G(\mathbf{H}_Q) - \langle \mathbf{H}_P-\mathbf{H}_Q , \nabla G(\mathbf{H}_Q) \rangle\f$
 	 */
 	public  double DivergenceG(ParamD HP , ParamD HQ){
-		return G(HP) - G(HQ) - (HP.Minus(HQ)).InnerProduct(gradG(HQ));
+		return G(HP) - G(HQ) - (HP.minus(HQ)).innerProduct(gradG(HQ));
 	}
 	
 	/**
@@ -155,7 +155,7 @@ abstract public class ExponentialFamily<ParamX extends Parameter, ParamD extends
 	 * @return     \f$ f(x) = \exp \left( \langle \mathbf{\Theta} \ , \ t(x) \rangle - F(\mathbf{\Theta}) + k(x) \right) \f$
 	 */
 	public double density(ParamX x, ParamD T){
-		return Math.exp(T.InnerProduct(t(x))-F(T)+k(x));
+		return Math.exp(T.innerProduct(t(x))-F(T)+k(x));
 	}
 	
 
@@ -166,7 +166,7 @@ abstract public class ExponentialFamily<ParamX extends Parameter, ParamD extends
 	 * @return      \f$ BD( \mathbf{\Theta_1} \| \mathbf{\Theta_2} ) = F(\mathbf{\Theta_1}) - F(\mathbf{\Theta_2}) - \langle \mathbf{\Theta_1} - \mathbf{\Theta_2} , \nabla F(\mathbf{\Theta_2}) \rangle \f$ 
 	 */
 	public double BD(ParamD T1 , ParamD T2){
-		return F(T1) - F(T2) - gradF(T2).InnerProduct(T1.Minus(T2));
+		return F(T1) - F(T2) - gradF(T2).innerProduct(T1.minus(T2));
 	}
 	
 
@@ -187,7 +187,7 @@ abstract public class ExponentialFamily<ParamX extends Parameter, ParamD extends
 	 * @return         \f$ \nabla G \left( (1-\alpha) \nabla F (\mathbf{\Theta}_1) + \alpha \nabla F (\mathbf{\Theta}_2) \right)  \f$
 	 */
 	public ParamD GeodesicPoint(ParamD T1, ParamD T2, double alpha){
-		return gradG( (ParamD) (gradF(T1).Times(1.0d-alpha)).Plus(gradF(T2).Times(alpha)) );
+		return gradG( (ParamD) (gradF(T1).times(1.0d - alpha)).plus(gradF(T2).times(alpha)) );
 	}
 
 

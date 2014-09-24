@@ -54,8 +54,8 @@ public class BregmanSoftClustering {
 			// Expectation parameters
 			Parameter param = EF.t(clusters[i].get(0));
 			for (int j=1; j<clusters[i].size(); j++)
-				param = param.Plus(mm.EF.t((PVector)clusters[i].get(j)));
-			param = param.Times(1.0d/clusters[i].size());
+				param = param.plus(mm.EF.t(clusters[i].get(j)));
+			param = param.times(1.0d / clusters[i].size());
 			mm.param[i] = mm.EF.Eta2Lambda(param);
 		}
 		
@@ -112,7 +112,7 @@ public class BregmanSoftClustering {
 			for (row=0; row<m; row++){
 				double sum = 0;
 				for (col=0; col<n; col++){
-					double tmp  = fH.weight[col] * Math.exp( fL.EF.G(fH.param[col]) +  fL.EF.t(pointSet[row]).Minus(fH.param[col]).InnerProduct(fL.EF.gradG(fH.param[col])) );
+					double tmp  = fH.weight[col] * Math.exp( fL.EF.G(fH.param[col]) +  fL.EF.t(pointSet[row]).minus(fH.param[col]).innerProduct(fL.EF.gradG(fH.param[col])) );
 					p[row][col] = tmp;
 					sum        += tmp;
 				}
@@ -123,13 +123,13 @@ public class BregmanSoftClustering {
 			// Step M: computation of parameters
 			for (col=0; col<n; col++){
 				double sum    = p[0][col];
-				fH.param[col] = fL.EF.t(pointSet[0]).Times(p[0][col]);
+				fH.param[col] = fL.EF.t(pointSet[0]).times(p[0][col]);
 				for (row=1; row<m; row++){
 					sum          += p[row][col];
-					fH.param[col] = fH.param[col].Plus( fL.EF.t(pointSet[row]).Times(p[row][col]) );
+					fH.param[col] = fH.param[col].plus(fL.EF.t(pointSet[row]).times(p[row][col]));
 				}
 				fH.weight[col]     = sum / m;
-				fH.param[col]      = fH.param[col].Times(1./sum);
+				fH.param[col]      = fH.param[col].times(1. / sum);
 				fH.param[col].type = TYPE.EXPECTATION_PARAMETER;
 			}
 			

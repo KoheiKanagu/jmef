@@ -219,7 +219,7 @@ public final class UnivariateGaussian extends ExponentialFamily<PVector, PVector
 		Random  rand = new Random();
 		PVector v    = new PVector(1);
 		v.array[0]   = rand.nextGaussian() * Math.sqrt(variance.array[0]);
-		return v.Plus(mean);
+		return v.plus(mean);
 	}
 
 

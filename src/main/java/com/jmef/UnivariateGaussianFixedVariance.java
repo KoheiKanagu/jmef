@@ -206,7 +206,7 @@ public final class UnivariateGaussianFixedVariance extends ExponentialFamily<PVe
 		Random  rand = new Random();
 		PVector v    = new PVector(1);
 		v.array[0]   = rand.nextGaussian() * Math.sqrt(this.variance);
-		return v.Plus(L);
+		return v.plus(L);
 	}
 
 

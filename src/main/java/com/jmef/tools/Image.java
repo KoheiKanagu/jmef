@@ -296,7 +296,7 @@ public class Image {
 					x.array[3] = row;
 					x.array[4] = col;
 
-					double v = (x.Minus(((PVectorMatrix)f.param[i]).v)).InnerProduct(((PVectorMatrix)f.param[i]).M.Inverse().MultiplyVectorRight(x.Minus(((PVectorMatrix)f.param[i]).v)));
+					double v = (x.minus(((PVectorMatrix) f.param[i]).v)).innerProduct(((PVectorMatrix) f.param[i]).M.Inverse().MultiplyVectorRight(x.minus(((PVectorMatrix) f.param[i]).v)));
 					
 					if (v<t)
 						imgOut.setRGB(col, row, c.getRGB());

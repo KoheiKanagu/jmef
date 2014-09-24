@@ -43,7 +43,7 @@ public final class MultivariateIsotropicGaussian extends ExponentialFamily<PVect
 	 * @return     \f$ F(\mathbf{\theta}) = \frac{1}{2} \theta^\top\theta + \frac{d}{2}\log 2\pi \f$
 	 */
 	public double F(PVector T){
-		return 0.5d*( T.InnerProduct(T) + T.dim * Math.log(2*Math.PI) );
+		return 0.5d*( T.innerProduct(T) + T.dim * Math.log(2*Math.PI) );
 	}
 
 
@@ -65,7 +65,7 @@ public final class MultivariateIsotropicGaussian extends ExponentialFamily<PVect
 	 * @return     \f$ F(\mathbf{\theta})= \frac{1}{2} \eta^\top\eta + \frac{d}{2}\log 2\pi \f$
 	 */
 	public double G(PVector H){
-		return	0.5d*( H.InnerProduct(H) + H.dim * Math.log(2*Math.PI) );
+		return	0.5d*( H.innerProduct(H) + H.dim * Math.log(2*Math.PI) );
 	}
 
 
@@ -99,7 +99,7 @@ public final class MultivariateIsotropicGaussian extends ExponentialFamily<PVect
 	 * @return     \f$ k(x) = -\frac{1}{2}x^\top x \f$
 	 */
 	public double k(PVector x){
-		return -0.5d * x.InnerProduct(x);
+		return -0.5d * x.innerProduct(x);
 	}
 
 
@@ -159,7 +159,7 @@ public final class MultivariateIsotropicGaussian extends ExponentialFamily<PVect
 	 */
 	public double density(PVector x, PVector param){
 		if (param.type==TYPE.SOURCE_PARAMETER){
-			double v1 = (x.Minus(param)).InnerProduct(x.Minus(param));
+			double v1 = (x.minus(param)).innerProduct(x.minus(param));
 			double v2 = Math.exp(-0.5d*v1);
 			return v2 / Math.pow( 2.0d*Math.PI , (double)x.dim/2.0d );
 		}
@@ -191,8 +191,8 @@ public final class MultivariateIsotropicGaussian extends ExponentialFamily<PVect
 	 * @return      \f$ D_{\mathrm{KL}}(f_P \| f_Q) = \frac{1}{2} ( \mu_Q - \mu_P )^\top( \mu_Q - \mu_P ) \f$
 	 */
 	public double KLD(PVector LP, PVector LQ) {
-		PVector diff = LQ.Minus(LP);
-		return 0.5d * diff.InnerProduct(diff);
+		PVector diff = LQ.minus(LP);
+		return 0.5d * diff.innerProduct(diff);
 	}
 
 

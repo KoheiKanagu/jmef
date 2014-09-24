@@ -69,7 +69,7 @@ public class PMatrix extends Parameter{
 	 * @param   m2  matrix \f$ m_2 \f$
 	 * @return      \f$ m_1 + m_2 \f$
 	 */
-	public PMatrix Plus(Parameter m2){
+	public PMatrix plus(Parameter m2){
 		PMatrix Q      = (PMatrix)m2;	
 		PMatrix result = new PMatrix(this.dim);
 		for(int i=0; i<this.dim; i++)
@@ -84,7 +84,7 @@ public class PMatrix extends Parameter{
 	 * @param   m2  vector \f$ m_2 \f$
 	 * @return      \f$ m_1 - m_2 \f$
 	 */
-	public PMatrix Minus(Parameter m2){
+	public PMatrix minus(Parameter m2){
 		PMatrix Q      = (PMatrix)m2;	
 		PMatrix result = new PMatrix(this.dim);
 		for(int i=0; i<this.dim; i++)
@@ -99,7 +99,7 @@ public class PMatrix extends Parameter{
 	 * @param  lambda  value \f$ \lambda \f$
 	 * @return         \f$ \lambda m\f$
 	 */
-	public PMatrix Times(double lambda){
+	public PMatrix times(double lambda){
 		PMatrix result = new PMatrix(this.dim);
 		for(int i=0; i<this.dim; i++)
 			for(int j=0; j<this.dim; j++)
@@ -113,7 +113,7 @@ public class PMatrix extends Parameter{
 	 * @param   m2  vector \f$ m_2 \f$
 	 * @return      \f$ tr(m_1 . m_2^\top) \f$ 
 	 */
-	public double InnerProduct(Parameter m2){
+	public double innerProduct(Parameter m2){
 		PMatrix Q = (PMatrix)m2;	
 		return (this.Multiply(Q.Transpose())).Trace();	
 	}
